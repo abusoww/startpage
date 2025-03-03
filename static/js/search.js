@@ -83,7 +83,7 @@ function search(query) {
             "https://nhentai.net/search/?q=" +
             query.replaceChars("+", "%2B");
             break;
-        case "-h":
+        case "-repo":
             window.location =
             "https://github.dev/abusoww/startpage" +
             query.replaceChars("+", "%2B");
