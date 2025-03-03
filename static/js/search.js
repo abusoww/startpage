@@ -83,6 +83,10 @@ function search(query) {
             "https://nhentai.net/search/?q=" +
             query.replaceChars("+", "%2B");
             break;
+        case "-h":
+            window.location =
+            "https://github.dev/abusoww/startpage" +
+            query.replaceChars("+", "%2B");
         default:
             window.location = "https://search.brave.com/search?q=" +
                 query.replaceChars(" ", "+");
