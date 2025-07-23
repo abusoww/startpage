@@ -49,54 +49,34 @@
 
   // prettier-ignore
   const COMMANDS = new Map([
-    ['a', { name: 'AI', searchTemplate: '/?temporary-chat=true&q={}', suggestions: ['a/copilot', 'a/deepseek', 'a/gemini', 'a/grok', 'a/perplexity'], url: 'https://chatgpt.com/?temporary-chat=true' }],
-    ['a/copilot', { url: 'https://github.com/copilot' }],
-    ['a/deepseek', { url: 'https://chat.deepseek.com' }],
-    ['a/gemini', { url: 'https://gemini.google.com' }],
-    ['a/grok', { url: 'https://grok.com' }],
-    ['a/perplexity', { url: 'https://www.perplexity.ai' }],
-    
-    
-    
-        
-    ['d', { name: 'Discord', url: 'https://discord.com/channels/@me' }],
-    
-    ['f', { name: 'Finances', url: 'https://docs.google.com/spreadsheets/d/1sjSOdlKaE-BcraiEDjqfakCXietLTSUY1ny6gQTj-oQ/edit' }],
-    
-    ['g', { name: 'GitHub', searchTemplate: '/search?q={}', suggestions: ['g/trending'], url: 'https://github.com' }],
-    
-        
-    ['p', { name: 'Proton', suggestions: ['p/pass', 'p/drive'], url: 'https://mail.proton.me/u/0/inbox' }],
-    ['p/drive', { url: 'https://drive.proton.me/u/0' }],
-    ['p/pass', { url: 'https://pass.proton.me/u/0' }],
-    
-    
-    
-    ['s', { name: Socials', suggestions: ['s/insta', 's/reddit', 's/discord'],}],
-    ['s/insta', { url: 'https://instagram.com' }],
-    ['s/reddit', { url: 'https://reddit.com' }],
-    ['s/discord', { url: 'https://discord.com/channels/@me' }],
-    
-    
-    
-    
-    ['v', { name: 'Vercel', url: 'https://vercel.com/dashboard' }],
-    
-    ['u', { name: 'Umami', url: 'https://cloud.umami.is/settings/websites' }],
-    
-    ['x', { name: 'abusov', suggestions: ['x/nextcloud', 'x/calculator', 'x/posts', 'x/about'], url: 'https://abusov.com' }],
-    ['x/nextcloud', { url: 'https://nextcloud.abusov.com' }],
-    ['x/calculator', { url: 'https://calculator.abusov.com' }],
-    ['x/about', { url: 'https://abusov.com/about' }],
-    ['x/posts', { url: 'https://abusov.com/posts' }],
-
-    
-    ['y', { name: 'YouTube', searchTemplate: '/results?search_query={}', url: 'https://www.youtube.com/feed/subscriptions' }],
-    
-    ['0', { name: 'localhost', suggestions: ['0:54323', '0:54324'], url: 'http://localhost:3000' }],
-    ['0:54323', { url: 'http://localhost:54323' }],
-    ['0:54324', { url: 'http://localhost:54324' }],
-  ]);
+  ['a', { name: 'AI', searchTemplate: '/?temporary-chat=true&q={}', suggestions: ['a/copilot', 'a/deepseek', 'a/gemini', 'a/grok', 'a/perplexity'], url: 'https://chatgpt.com/?temporary-chat=true' }],
+  ['a/copilot', { url: 'https://github.com/copilot' }],
+  ['a/deepseek', { url: 'https://chat.deepseek.com' }],
+  ['a/gemini', { url: 'https://gemini.google.com' }],
+  ['a/grok', { url: 'https://grok.com' }],
+  ['a/perplexity', { url: 'https://www.perplexity.ai' }],
+  ['d', { name: 'Discord', url: 'https://discord.com/channels/@me' }],
+  ['f', { name: 'Finances', url: 'https://docs.google.com/spreadsheets/d/1sjSOdlKaE-BcraiEDjqfakCXietLTSUY1ny6gQTj-oQ/edit' }],
+  ['g', { name: 'GitHub', searchTemplate: '/search?q={}', suggestions: ['g/trending'], url: 'https://github.com' }],
+  ['p', { name: 'Proton', suggestions: ['p/pass', 'p/drive'], url: 'https://mail.proton.me/u/0/inbox' }],
+  ['p/drive', { url: 'https://drive.proton.me/u/0' }],
+  ['p/pass', { url: 'https://pass.proton.me/u/0' }],
+  ['s', { name: 'Socials', suggestions: ['s/insta', 's/reddit', 's/discord'] }],
+  ['s/insta', { url: 'https://instagram.com' }],
+  ['s/reddit', { url: 'https://reddit.com' }],
+  ['s/discord', { url: 'https://discord.com/channels/@me' }],
+  ['v', { name: 'Vercel', url: 'https://vercel.com/dashboard' }],
+  ['u', { name: 'Umami', url: 'https://cloud.umami.is/settings/websites' }],
+  ['x', { name: 'abusov', suggestions: ['x/nextcloud', 'x/calculator', 'x/posts', 'x/about'], url: 'https://abusov.com' }],
+  ['x/nextcloud', { url: 'https://nextcloud.abusov.com' }],
+  ['x/calculator', { url: 'https://calculator.abusov.com' }],
+  ['x/about', { url: 'https://abusov.com/about' }],
+  ['x/posts', { url: 'https://abusov.com/posts' }],
+  ['y', { name: 'YouTube', searchTemplate: '/results?search_query={}', url: 'https://www.youtube.com/feed/subscriptions' }],
+  ['0', { name: 'localhost', suggestions: ['0:54323', '0:54324'], url: 'http://localhost:3000' }],
+  ['0:54323', { url: 'http://localhost:54323' }],
+  ['0:54324', { url: 'http://localhost:54324' }],
+]);
 </script>
 
 <template id="commands-template">
