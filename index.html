@@ -44,41 +44,39 @@
     commandSearchDelimiter: ' ',
     defaultSearchTemplate: 'https://duckduckgo.com/?q={}',
     openLinksInNewTab: true,
-    suggestionLimit: 5,
+    suggestionLimit: 4,
   };
 
   // prettier-ignore
   const COMMANDS = new Map([
-    ['a', { name: 'AI', searchTemplate: '/?temporary-chat=true&q={}', suggestions: ['a/claude','a/copilot', 'a/deepseek', 'a/gemini', 'a/grok', 'a/perplexity'], url: 'https://chatgpt.com/?temporary-chat=true' }],
+    ['a', { name: 'AI', searchTemplate: '/?temporary-chat=true&q={}', suggestions: ['a/copilot', 'a/deepseek', 'a/gemini', 'a/grok', 'a/perplexity'], url: 'https://chatgpt.com/?temporary-chat=true' }],
     ['a/copilot', { url: 'https://github.com/copilot' }],
-    ['a/claude', { url: 'https://claude.ai/new' }],
     ['a/deepseek', { url: 'https://chat.deepseek.com' }],
     ['a/gemini', { url: 'https://gemini.google.com' }],
     ['a/grok', { url: 'https://grok.com' }],
     ['a/perplexity', { url: 'https://www.perplexity.ai' }],
-    //['c', { name: 'Cloudflare', url: 'https://dash.cloudflare.com' }],
-    ['c', { name: 'aws', url: 'https://ap-south-1.console.aws.amazon.com/console/home?region=ap-south-1#' }],
+    ['c', { name: 'Cloudflare', url: 'https://dash.cloudflare.com' }],
     ['d', { name: 'Discord', url: 'https://discord.com/channels/@me' }],
-   // ['f', { name: 'Finances', url: 'https://docs.google.com/spreadsheets/d/1sjSOdlKaE-BcraiEDjqfakCXietLTSUY1ny6gQTj-oQ/edit' }],
+    ['f', { name: 'Finances', url: 'https://docs.google.com/spreadsheets/d/1sjSOdlKaE-BcraiEDjqfakCXietLTSUY1ny6gQTj-oQ/edit' }],
     ['g', { name: 'GitHub', searchTemplate: '/search?q={}', suggestions: ['g/trending'], url: 'https://github.com' }],
-    //['h', { name: 'Hetzner', url: 'https://console.hetzner.cloud/projects' }],
-    //['i', { name: 'Instant', url: 'https://www.instantdb.com/dash' }],
+    ['h', { name: 'Hetzner', url: 'https://console.hetzner.cloud/projects' }],
+    ['i', { name: 'Instant', url: 'https://www.instantdb.com/dash' }],
     ['p', { name: 'Proton', suggestions: ['p/pass', 'p/drive'], url: 'https://mail.proton.me/u/0/inbox' }],
     ['p/drive', { url: 'https://drive.proton.me/u/0' }],
     ['p/pass', { url: 'https://pass.proton.me/u/0' }],
-    //['s', { name: 'Supabase', url: 'https://supabase.com/dashboard/projects' }],
+    ['s', { name: 'Supabase', url: 'https://supabase.com/dashboard/projects' }],
     ['t', { name: 'TickTick', url: 'https://ticktick.com/webapp/#q/today/tasks' }],
     ['v', { name: 'Vercel', url: 'https://vercel.com/dashboard' }],
-    //['x', { name: 'xvvvyz', suggestions: ['x/seerr', 'x/torrent', 'x/radarr', 'x/sonarr', 'x/bazarr'], url: 'https://xvvvyz.xyz' }],
-    //['x/bazarr', { url: 'https://bazarr.xvvvyz.xyz' }],
-    //['x/radarr', { url: 'https://radarr.xvvvyz.xyz' }],
-    //['x/seerr', { url: 'https://jellyseerr.xvvvyz.xyz' }],
-    //['x/sonarr', { url: 'https://sonarr.xvvvyz.xyz' }],
-    //['x/torrent', { url: 'https://torrent.xvvvyz.xyz' }],
+    ['x', { name: 'xvvvyz', suggestions: ['x/seerr', 'x/torrent', 'x/radarr', 'x/sonarr', 'x/bazarr'], url: 'https://xvvvyz.xyz' }],
+    ['x/bazarr', { url: 'https://bazarr.xvvvyz.xyz' }],
+    ['x/radarr', { url: 'https://radarr.xvvvyz.xyz' }],
+    ['x/seerr', { url: 'https://jellyseerr.xvvvyz.xyz' }],
+    ['x/sonarr', { url: 'https://sonarr.xvvvyz.xyz' }],
+    ['x/torrent', { url: 'https://torrent.xvvvyz.xyz' }],
     ['y', { name: 'YouTube', searchTemplate: '/results?search_query={}', url: 'https://www.youtube.com/feed/subscriptions' }],
-    ['0', { name: 'localhost', suggestions: ['0:8080', '0:3000'], url: 'http://localhost:3000' }],
-    ['0:8080', { url: 'http://localhost:8080' }],
-    ['0:3000', { url: 'http://localhost:3000' }],
+    ['0', { name: 'localhost', suggestions: ['0:54323', '0:54324'], url: 'http://localhost:3000' }],
+    ['0:54323', { url: 'http://localhost:54323' }],
+    ['0:54324', { url: 'http://localhost:54324' }],
   ]);
 </script>
 
@@ -443,14 +441,19 @@
 
       let suggestions = COMMANDS.get(oq.query)?.suggestions ?? [];
 
-      if (oq.search && suggestions.length < CONFIG.suggestionLimit) {
+      if (
+        oq.search?.length > 1 &&
+        suggestions.length < CONFIG.suggestionLimit
+      ) {
         const res = await Search.#fetchDuckDuckGoSuggestions(oq.search);
 
-        suggestions = suggestions.concat(
-          oq.splitBy
-            ? res.map((search) => `${oq.key}${oq.splitBy}${search}`)
-            : res
-        );
+        suggestions = suggestions
+          .concat(
+            oq.splitBy
+              ? res.map((search) => `${oq.key}${oq.splitBy}${search}`)
+              : res
+          )
+          .slice(0, CONFIG.suggestionLimit);
       }
 
       const nq = Search.#parseQuery(this.#input.value);
@@ -507,10 +510,9 @@
 
     #renderSuggestions(suggestions, query) {
       this.#suggestions.innerHTML = '';
-      const sliced = suggestions.slice(0, CONFIG.suggestionLimit);
       const template = document.getElementById('suggestion-template');
 
-      for (const [index, suggestion] of sliced.entries()) {
+      for (const [index, suggestion] of suggestions.entries()) {
         const clone = template.content.cloneNode(true);
         const ref = clone.querySelector('.suggestion');
         ref.dataset.index = index;
